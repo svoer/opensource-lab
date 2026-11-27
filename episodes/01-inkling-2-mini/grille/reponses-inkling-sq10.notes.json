@@ -1,0 +1,114 @@
+{
+ "score": 12,
+ "sur": 12,
+ "details": [
+  {
+   "id": "lettres",
+   "titre": "Compter les lettres",
+   "reussi": true,
+   "secondes": 9.69,
+   "tokens": 256,
+   "finish": "stop",
+   "reponse": "2. La lettre « r » apparaît deux fois dans « framboisier », en début et à la fin du mot."
+  },
+  {
+   "id": "mots",
+   "titre": "Compter ses propres mots",
+   "reussi": true,
+   "secondes": 8.28,
+   "tokens": 228,
+   "finish": "stop",
+   "reponse": "Cette réponse contient 5 mots."
+  },
+  {
+   "id": "tueurs",
+   "titre": "Les tueurs dans la pièce",
+   "reussi": true,
+   "secondes": 31.54,
+   "tokens": 835,
+   "finish": "stop",
+   "reponse": "Il y a 3 tueurs au départ. L’intrus entre et tue l’un d’eux : il devient lui-même tueur. Aucun ne sort, donc dans la pièce il reste les deux tueurs survivants, le tueur mort, et l’intrus devenu tueur. Si l’on compte les tueurs vivants, il y a 3 : les deux survivants et l’intrus.\n\nRéponse : 3"
+  },
+  {
+   "id": "bille",
+   "titre": "La bille et le verre",
+   "reussi": true,
+   "secondes": 9.4,
+   "tokens": 241,
+   "finish": "stop",
+   "reponse": "La bille est sur la table."
+  },
+  {
+   "id": "sechage",
+   "titre": "Les chemises au soleil",
+   "reussi": true,
+   "secondes": 8.57,
+   "tokens": 219,
+   "finish": "stop",
+   "reponse": "Le temps de séchage reste le même si les chemises sont étendues en même temps au soleil.\n\nRéponse : 4 heures"
+  },
+  {
+   "id": "pomme",
+   "titre": "Dix phrases, un dernier mot",
+   "reussi": true,
+   "secondes": 21.46,
+   "tokens": 564,
+   "finish": "stop",
+   "reponse": "1. La leçon de grammaire se termine par une pomme.\n2. Le jardin regorge de fruits et de pomme.\n3. La recette de tarte se termine par une pomme.\n4. Le panier contient une pomme.\n5. La fable de la forêt se termine par une pomme.\n6. Le conte de l'école se termine par une pomme.\n7. La poésie du matin se termine par une pomme.\n8. Le tableau de la fête se termine par une pomme.\n9. La chanson de l'été se termine par une pomme.\n10. La lettre de la boutique se termine par une pomme."
+  },
+  {
+   "id": "calcul",
+   "titre": "Priorité des opérations",
+   "reussi": true,
+   "secondes": 5.84,
+   "tokens": 145,
+   "finish": "stop",
+   "reponse": "25 - 4 * 2 + 3 = 25 - 8 + 3 = 20\nRéponse : 20"
+  },
+  {
+   "id": "json",
+   "titre": "JSON strict",
+   "reussi": true,
+   "secondes": 6.69,
+   "tokens": 167,
+   "finish": "stop",
+   "reponse": "{\"nom\":\"Camille\",\"age\":29,\"villes\":[\"Paris\",\"Lyon\",\"Marseille\"]}"
+  },
+  {
+   "id": "pluriels",
+   "titre": "Pluriels irréguliers",
+   "reussi": true,
+   "secondes": 7.59,
+   "tokens": 190,
+   "finish": "stop",
+   "reponse": "chevaux, bals, vitraux, pneus, bijoux"
+  },
+  {
+   "id": "jours",
+   "titre": "Les jours de la semaine",
+   "reussi": true,
+   "secondes": 8.01,
+   "tokens": 202,
+   "finish": "stop",
+   "reponse": "Si hier était vendredi, aujourd’hui est samedi, demain est dimanche, et après-demain est lundi.\n\nRéponse : lundi"
+  },
+  {
+   "id": "code",
+   "titre": "Fonction Python",
+   "reussi": true,
+   "secondes": 8.87,
+   "tokens": 227,
+   "finish": "stop",
+   "reponse": "```python\ndef est_premier(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    i = 3\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 2\n    return True\n```"
+  },
+  {
+   "id": "consigne",
+   "titre": "Un seul mot",
+   "reussi": true,
+   "secondes": 3.36,
+   "tokens": 77,
+   "finish": "stop",
+   "reponse": "Canberra"
+  }
+ ]
+}
