@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dépenses par catégorie et par mois</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+  h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: .4rem; }
+  .chart { display: flex; gap: 2rem; align-items: flex-end; height: 240px; border-bottom: 2px solid #333; }
+  .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+  .bar { width: 70%; background: #7a5c3e; border-radius: 4px 4px 0 0; }
+  .lbl { font-size: .85rem; margin-top: .5rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; font-size: .95rem; }
+  th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: right; }
+  th { background: #f0ede6; }
+  td:first-child, th:first-child { text-align: left; }
+  .total td { font-weight: bold; background: #f0ede6; }
+</style>
+</head>
+<body>
+<h1>Dépenses par catégorie et par mois</h1>
+<div class="chart">
+  <div class="col"><div class="bar" style="height: 196px"></div></div>
+  <div class="col"><div class="bar" style="height: 200px"></div></div>
+  <div class="col"><div class="bar" style="height: 201px"></div></div>
+</div>
+<div class="lbl" style="display:flex;gap:2rem;"><div style="flex:1;text-align:center;">Sept.</div><div style="flex:1;text-align:center;">Oct.</div><div style="flex:1;text-align:center;">Nov.</div></div>
+<p>Barres proportionnelles aux dépenses totales mensuelles : Sept. 2 299,64 € · Oct. 2 332,13 € · Nov. 2 337,52 €.</p>
+<table>
+<thead><tr><th>Catégorie</th><th>Sept.</th><th>Oct.</th><th>Nov.</th></tr></thead>
+<tbody>
+<tr><td>Logement</td><td>-1 042,57</td><td>-1 025,32</td><td>-1 043,78</td></tr>
+<tr><td>Courses</td><td>-703,35</td><td>-732,54</td><td>-747,21</td></tr>
+<tr><td>Loisirs</td><td>-298,87</td><td>-299,53</td><td>-317,60</td></tr>
+<tr><td>Transport</td><td>-109,25</td><td>-111,66</td><td>-84,26</td></tr>
+<tr><td>Abonnements</td><td>-117,58</td><td>-117,58</td><td>-117,58</td></tr>
+<tr><td>Santé</td><td>-28,02</td><td>-45,50</td><td>-27,09</td></tr>
+<tr class="total"><td>Total dépenses</td><td>-2 299,64</td><td>-2 332,13</td><td>-2 337,52</td></tr>
+</tbody>
+</table>
+</body>
+</html>
