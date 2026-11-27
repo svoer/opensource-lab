@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetris — Console 2026</title>
+<style>
+  :root {
+    --dark: #0f380f;
+    --mid: #306230;
+    --light: #8bac0f;
+    --pale: #9bbc0f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #1a2b1a;
+    background: radial-gradient(1200px 700px at 50% 20%, #243a24 0%, #141f14 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    padding: 24px;
+  }
+  .console {
+    background: linear-gradient(160deg, #2e4a2e 0%, #1d2f1d 100%);
+    border-radius: 28px;
+    padding: 28px 32px 36px;
+    box-shadow: 0 30px 60px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.08);
+    border: 1px solid #3a5a3a;
+    width: min(560px, 96vw);
+  }
+  .brand {
+    text-align: center;
+    color: var(--pale);
+    letter-spacing: .35em;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: .85;
+  }
+  .screen-wrap {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: inset 0 0 0 2px #0a2a0a, inset 0 0 24px rgba(0,0,0,.5);
+  }
+  .screen {
+    background: var(--pale);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    image-rendering: pixelated;
+  }
+  .screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, rgba(15,56,15,.06) 0 2px, transparent 2px 4px);
+    pointer-events: none;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 96px;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  #board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    width: 100%;
+    aspect-ratio: 10 / 20;
+    background: var(--pale);
+  }
+  .cell {
+    border: 1px solid rgba(15,56,15,.12);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cell.filled {
+    background: var(--dark);
+    box-shadow: inset 0 0 0 2px var(--mid);
+    border-radius: 2px;
+  }
+  .cell.filled.c1 { background: var(--mid); box-shadow: inset 0 0 0 2px var(--dark); }
+  .cell.filled.c2 { background: var(--light); box-shadow: inset 0 0 0 2px var(--mid); }
+  .cell.filled.c3 { background: var(--dark); box-shadow: inset 0 0 0 2px var(--light); }
+  .cell.filled.c4 { background: var(--light); box-shadow: inset 0 0 0 2px var(--dark); }
+  .cell.filled.c5 { background: var(--mid); box-shadow: inset 0 0 0 2px var(--light); }
+  .cell.filled.c6 { background: var(--dark); box-shadow: inset 0 0 0 2px var(--mid); }
+  .cell.filled.c7 { background: var(--light); box-shadow: inset 0 0 0 2px var(--mid); }
+  .cell.ghost {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--mid);
+    opacity: .45;
+    border-radius: 2px;
+  }
+  .cell.clearing {
+    animation: clear .35s ease-out forwards;
+  }
+  @keyframes clear {
+    0% { background: var(--dark); }
+    100% { background: var(--pale); opacity: 0; }
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--dark);
+  }
+  .panel {
+    background: rgba(15,56,15,.08);
+    border: 1px solid rgba(15,56,15,.25);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+  }
+  .panel h3 {
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+  .panel .val {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--dark);
+    font-variant-numeric: tabular-nums;
+  }
+  #nextBox {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+    aspect-ratio: 1;
+    background: transparent;
+  }
+  #nextBox .cell { border: none; }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15,56,15,.82);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--pale);
+    text-align: center;
+    z-index: 2;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+  .overlay.show { opacity: 1; pointer-events: auto; }
+  .overlay h2 { font-size: 26px; letter-spacing: .12em; text-transform: uppercase; }
+  .overlay p { font-size: 13px; opacity: .85; }
+  .overlay .hint { font-size: 11px; letter-spacing: .1em; color: var(--light); }
+  .footer {
+    margin-top: 16px;
+    text-align: center;
+    color: var(--pale);
+    font-size: 11px;
+    letter-spacing: .08em;
+    opacity: .75;
+  }
+  .footer kbd {
+    background: rgba(155,188,15,.15);
+    border: 1px solid rgba(155,188,15,.35);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: inherit;
+    color: var(--pale);
+  }
+</style>
+</head>
+<body>
+  <div class="console">
+    <div class="brand">Tetris · Console 2026</div>
+    <div class="screen-wrap">
+      <div class="screen">
+        <div class="layout">
+          <div id="board"></div>
+          <div class="side">
+            <div class="panel"><h3>Score</h3><div class="val" id="score">0</div></div>
+            <div class="panel"><h3>Niveau</h3><div class="val" id="level">1</div></div>
+            <div class="panel"><h3>Lignes</h3><div class="val" id="lines">0</div></div>
+            <div class="panel"><h3>Suiv.</h3><div id="nextBox"></div></div>
+          </div>
+        </div>
+        <div class="overlay" id="overlay">
+          <h2 id="overlayTitle">Partie terminée</h2>
+          <p id="overlayText"></p>
+          <div class="hint">Entrée pour recommencer</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <kbd>←</kbd> <kbd>→</kbd> déplacer · <kbd>↑</kbd> tourner · <kbd>↓</kbd> accélérer · <kbd>Espace</kbd> chute · <kbd>P</kbd> pause
+    </div>
+  </div>
+<script>
+"use strict";
+const COLS = 10, ROWS = 20;
+const SHAPES = {
+  I: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
+  O: [[1,1],[1,1]],
+  T: [[0,1,0],[1,1,1],[0,0,0]],
+  S: [[0,1,1],[1,1,0],[0,0,0]],
+  Z: [[1,1,0],[0,1,1],[0,0,0]],
+  J: [[1,0,0],[1,1,1],[0,0,0]],
+  L: [[0,0,1],[1,1,1],[0,0,0]],
+};
+const COLORS = { I:1, O:2, T:3, S:4, Z:5, J:6, L:7 };
+const SHAPES_LIST = ["I","O","T","S","Z","J","L"];
+
+let board, bag, current, next, score, lines, level, best, paused, over, dropTimer, dropInterval, rafId;
+
+function newBag() {
+  const b = [...SHAPES_LIST];
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+function drawPiece() {
+  if (bag.length === 0) bag = newBag();
+  return bag.pop();
+}
+function makePiece(type) {
+  return { type, shape: SHAPES[type].map(r => r.slice()), x: Math.floor((COLS - shapeCols(type)) / 2), y: 0 };
+}
+function shapeCols(type) { return SHAPES[type][0].length; }
+function rotate(shape) {
+  const n = shape.length, m = shape[0].length;
+  const out = [];
+  for (let i = 0; i < m; i++) {
+    const row = [];
+    for (let j = 0; j < n; j++) row.push(shape[j][i]);
+    out.push(row);
+  }
+  return out;
+}
+function collides(shape, px, py) {
+  for (let y = 0; y < shape.length; y++) {
+    for (let x = 0; x < shape[y].length; x++) {
+      if (!shape[y][x]) continue;
+      const bx = px + x, by = py + y;
+      if (bx < 0 || bx >= COLS || by >= ROWS) return true;
+      if (by >= 0 && board[by][bx]) return true;
+    }
+  }
+  return false;
+}
+function valid(shape, px, py) { return !collides(shape, px, py); }
+function tryRotate(dir) {
+  const rotated = dir === 1 ? rotate(current.shape) : rotate(rotate(rotate(current.shape)));
+  for (const dx of [0, -1, 1, -2, 2]) {
+    if (valid(rotated, current.x + dx, current.y)) { current.shape = rotated; current.x += dx; return; }
+  }
+}
+function ghostY() {
+  let y = current.y;
+  while (valid(current.shape, current.x, y + 1)) y++;
+  return y;
+}
+function clearLines() {
+  const full = [];
+  for (let y = 0; y < ROWS; y++) {
+    if (board[y].every(c => c)) full.push(y);
+  }
+  if (full.length === 0) return 0;
+  full.forEach(y => board[y].fill(0));
+  // animate
+  full.forEach(y => {
+    for (let x = 0; x < COLS; x++) {
+      const el = cellEl(y, x);
+      if (el) el.classList.add("clearing");
+    }
+  });
+  setTimeout(() => {
+    for (let i = 0; i < full.length; i++) {
+      const y = full[i];
+      board.splice(y, 1);
+      board.unshift(new Array(COLS).fill(0));
+    }
+    render();
+  }, 350);
+  const pts = [0, 100, 300, 500, 800][full.length] || 0;
+  score += pts * level;
+  lines += full.length;
+  level = Math.floor(lines / 10) + 1;
+  dropInterval = Math.max(80, 800 - (level - 1) * 70);
+  return full.length;
+}
+function cellEl(y, x) {
+  return document.getElementById("board").children[y * COLS + x];
+}
+function render() {
+  const boardEl = document.getElementById("board");
+  const ghost = ghostY();
+  for (let y = 0; y < ROWS; y++) {
+    for (let x = 0; x < COLS; x++) {
+      const el = boardEl.children[y * COLS + x];
+      el.className = "cell";
+      el.textContent = "";
+      if (board[y][x]) {
+        el.classList.add("filled", "c" + board[y][x]);
+      }
+    }
+  }
+  // current piece
+  for (let y = 0; y < current.shape.length; y++) {
+    for (let x = 0; x < current.shape[y].length; x++) {
+      if (!current.shape[y][x]) continue;
+      const by = current.y + y, bx = current.x + x;
+      if (by < 0 || by >= ROWS) continue;
+      const el = boardEl.children[by * COLS + bx];
+      el.classList.add("filled", "c" + COLORS[current.type]);
+    }
+  }
+  // ghost
+  for (let y = 0; y < current.shape.length; y++) {
+    for (let x = 0; x < current.shape[y].length; x++) {
+      if (!current.shape[y][x]) continue;
+      const by = ghost + y, bx = current.x + x;
+      if (by < 0 || by >= ROWS) continue;
+      const el = boardEl.children[by * COLS + bx];
+      if (!el.classList.contains("filled")) el.classList.add("ghost");
+    }
+  }
+  // next
+  const nextEl = document.getElementById("nextBox");
+  nextEl.innerHTML = "";
+  const shape = SHAPES[next];
+  for (let y = 0; y < 4; y++) {
+    for (let x = 0; x < 4; x++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      if (shape[y] && shape[y][x]) cell.classList.add("filled", "c" + COLORS[next]);
+      nextEl.appendChild(cell);
+    }
+  }
+  document.getElementById("score").textContent = score;
+  document.getElementById("level").textContent = level;
+  document.getElementById("lines").textContent = lines;
+}
+function lockPiece() {
+  for (let y = 0; y < current.shape.length; y++) {
+    for (let x = 0; x < current.shape[y].length; x++) {
+      if (!current.shape[y][x]) continue;
+      const by = current.y + y, bx = current.x + x;
+      if (by < 0) { over = true; }
+      else if (by < ROWS) board[by][bx] = COLORS[current.type];
+    }
+  }
+  clearLines();
+  if (over) { showGameOver(); return; }
+  current = makePiece(drawPiece());
+  next = drawPiece();
+  if (collides(current.shape, current.x, current.y)) { showGameOver(); return; }
+  render();
+}
+function step() {
+  if (paused || over) return;
+  if (valid(current.shape, current.x, current.y + 1)) {
+    current.y++;
+  } else {
+    lockPiece();
+  }
+  render();
+}
+function showGameOver() {
+  over = true;
+  best = Math.max(best, score);
+  localStorage.setItem("tetris-best", String(best));
+  const overlay = document.getElementById("overlay");
+  document.getElementById("overlayTitle").textContent = "Partie terminée";
+  document.getElementById("overlayText").textContent = "Score : " + score + " · Meilleur : " + best;
+  overlay.classList.add("show");
+}
+function start() {
+  board = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
+  bag = newBag();
+  score = 0; lines = 0; level = 1;
+  dropInterval = 800;
+  paused = false; over = false;
+  best = parseInt(localStorage.getItem("tetris-best") || "0", 10);
+  current = makePiece(drawPiece());
+  next = drawPiece();
+  document.getElementById("overlay").classList.remove("show");
+  render();
+  clearTimeout(dropTimer);
+  dropTimer = setTimeout(loop, dropInterval);
+}
+function loop() {
+  step();
+  dropTimer = setTimeout(loop, dropInterval);
+}
+function hardDrop() {
+  if (paused || over) return;
+  while (valid(current.shape, current.x, current.y + 1)) current.y++;
+  lockPiece();
+  render();
+}
+function togglePause() {
+  if (over) return;
+  paused = !paused;
+  const overlay = document.getElementById("overlay");
+  if (paused) {
+    document.getElementById("overlayTitle").textContent = "Pause";
+    document.getElementById("overlayText").textContent = "Appuyez sur P pour reprendre";
+    document.getElementById("overlay").classList.add("show");
+  } else {
+    overlay.classList.remove("show");
+  }
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Enter" && over) { start(); return; }
+  if (e.key === "ArrowLeft") {
+    if (valid(current.shape, current.x - 1, current.y)) current.x--;
+    render();
+  } else if (e.key === "ArrowRight") {
+    if (valid(current.shape, current.x + 1, current.y)) current.x++;
+    render();
+  } else if (e.key === "ArrowUp") {
+    tryRotate(1);
+    render();
+  } else if (e.key === "ArrowDown") {
+    if (valid(current.shape, current.x, current.y + 1)) { current.y++; render(); }
+  } else if (e.key === " ") {
+    e.preventDefault();
+    hardDrop();
+  } else if (e.key === "p" || e.key === "P") {
+    togglePause();
+  }
+});
+// build board cells
+const boardEl = document.getElementById("board");
+for (let i = 0; i < ROWS * COLS; i++) {
+  const c = document.createElement("div");
+  c.className = "cell";
+  boardEl.appendChild(c);
+}
+start();
+</script>
+</body>
+</html>
