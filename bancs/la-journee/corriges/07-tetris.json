@@ -1,0 +1,12 @@
+{
+  "criteres": [
+    "la page s'ouvre sans erreur",
+    "7 pièces qui tombent",
+    "rotation et déplacements au clavier",
+    "les lignes pleines disparaissent",
+    "score, lignes et niveau affichés",
+    "la vitesse augmente avec le niveau",
+    "fin de partie et recommencer",
+    "palette 4 tons vert Game Boy, look 2026 soigné"
+  ]
+}

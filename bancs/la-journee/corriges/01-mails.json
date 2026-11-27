@@ -1,0 +1,44 @@
+{
+  "urgents": {
+    "ecole": 2,
+    "banque": 17,
+    "mutuelle": 16
+  },
+  "plus_urgent": 2,
+  "fausses_urgences": [
+    7,
+    21,
+    24,
+    27
+  ],
+  "a_ne_pas_classer_urgent": [
+    7,
+    21,
+    24,
+    27,
+    1,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    18,
+    19,
+    20,
+    22,
+    23,
+    25,
+    26,
+    28,
+    29,
+    30
+  ],
+  "regle": "Le plus urgent est l'école (échéance demain mardi). Les 4 publicités « urgentes » ne sont pas urgentes."
+}

@@ -1,0 +1,6 @@
+{
+  "bug": "facture.py : `quantite > SEUIL_REMISE` doit être `quantite >= SEUIL_REMISE`",
+  "attendu": "python3 facture.py 10x4.20 → HT 37.80 €  TVA 7.56 €  TTC 45.36 €",
+  "test_cache": "total_ligne_ht(4.20, 10) == Decimal('37.80') et total_ligne_ht(4.20, 9) == Decimal('37.80')",
+  "bonus": "ajouter un test pour exactement 10 articles ; ne pas casser les 3 tests existants"
+}

@@ -1,0 +1,7 @@
+{
+  "prix_solde": 204.0,
+  "prix_final": 224.4,
+  "prix_moins_5": 228.0,
+  "meme_prix": false,
+  "explication": "240 × 0,85 = 204 ; 204 × 1,10 = 224,40 ; 240 × 0,95 = 228 : ce n'est pas pareil, car les 10 % s'appliquent à un prix déjà baissé."
+}

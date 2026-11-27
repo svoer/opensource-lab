@@ -1,0 +1,46 @@
+{
+  "lignes": 124,
+  "totaux_par_mois_et_categorie": {
+    "2026-09": {
+      "Abonnements": -78.38,
+      "Courses": -703.35,
+      "Logement": -933.3,
+      "Loisirs": -263.97,
+      "Revenus": 2480.0,
+      "Santé": -28.02,
+      "Transport": -292.62
+    },
+    "2026-10": {
+      "Abonnements": -78.38,
+      "Courses": -732.54,
+      "Logement": -933.3,
+      "Loisirs": -264.63,
+      "Revenus": 2480.0,
+      "Santé": -45.5,
+      "Transport": -277.78
+    },
+    "2026-11": {
+      "Abonnements": -78.38,
+      "Courses": -747.21,
+      "Logement": -933.3,
+      "Loisirs": -282.7,
+      "Revenus": 2480.0,
+      "Santé": -27.09,
+      "Transport": -268.84
+    }
+  },
+  "depenses_par_mois": {
+    "2026-09": -2299.64,
+    "2026-10": -2332.13,
+    "2026-11": -2337.52
+  },
+  "categories": [
+    "Courses",
+    "Logement",
+    "Transport",
+    "Abonnements",
+    "Loisirs",
+    "Santé",
+    "Revenus"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "decisions": [
+    {
+      "quoi": "Newsletter mensuelle au lieu de bimensuelle",
+      "qui": "Paul",
+      "quand": "dès décembre"
+    },
+    {
+      "quoi": "Participation au salon de Lyon, stand de 9 m²",
+      "qui": "Inès",
+      "quand": "avant le 15 décembre"
+    },
+    {
+      "quoi": "Mise à jour de la page tarifs avec les nouveaux prix",
+      "qui": "Hugo",
+      "quand": "vendredi"
+    },
+    {
+      "quoi": "Recrutement d'un alternant pour janvier",
+      "qui": "Claire",
+      "quand": "cette semaine"
+    },
+    {
+      "quoi": "Délai de deux semaines accordé au client Bertin",
+      "qui": "Claire",
+      "quand": "demain"
+    },
+    {
+      "quoi": "Réunion d'équipe déplacée au mardi 9 h dès janvier",
+      "qui": "Nadia",
+      "quand": "à partir de janvier"
+    }
+  ],
+  "piege": "L'appli mobile a été proposée puis abandonnée : elle ne doit pas apparaître comme décision."
+}

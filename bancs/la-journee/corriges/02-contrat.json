@@ -1,0 +1,11 @@
+{
+  "preavis": "1 mois (article 9.2, zone tendue, article 3) et non 3 mois",
+  "envoi_lettre": "pour partir le 31 janvier 2027, la lettre doit être reçue par le bailleur au plus tard le 31 décembre 2026 (article 9.3)",
+  "cout_depart": "loyer + charges pendant le préavis : 780 + 70 = 850 € ; aucun frais de remise en location (article 17)",
+  "depot": "780 € rendus sous 1 mois si l'état des lieux est conforme, 2 mois sinon (article 11)",
+  "pieges": [
+    "dire 3 mois de préavis",
+    "réclamer des frais de relocation",
+    "imputer le dépôt sur le dernier loyer (interdit, article 8)"
+  ]
+}

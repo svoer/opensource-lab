@@ -1,0 +1,21 @@
+{
+  "budget_max": 80,
+  "personnes": 4,
+  "jours": 7,
+  "interdits": [
+    "noix",
+    "noisette",
+    "amande",
+    "cajou",
+    "pécan",
+    "pecan",
+    "pistache",
+    "macadamia",
+    "praliné",
+    "pralin",
+    "frangipane",
+    "nougat",
+    "pignon"
+  ],
+  "controle": "total recalculé depuis la liste de courses ≤ 80 € ; aucun fruit à coque ; 7 dîners différents"
+}
