@@ -1,0 +1,14 @@
+[
+ {"id": "lettres", "titre": "Compter les lettres", "q": "Combien de fois la lettre « r » apparaît-elle dans le mot « framboisier » ? Réponds par un chiffre puis une phrase d'explication."},
+ {"id": "mots", "titre": "Compter ses propres mots", "q": "Combien de mots contient ta réponse à cette question ? Réponds par une seule phrase complète qui contient ce nombre écrit en chiffres."},
+ {"id": "tueurs", "titre": "Les tueurs dans la pièce", "q": "Il y a trois tueurs dans une pièce. Quelqu'un entre dans la pièce et tue l'un d'eux. Personne ne sort. Combien de tueurs y a-t-il dans la pièce ? Explique ton raisonnement, puis termine par une ligne « Réponse : N »."},
+ {"id": "bille", "titre": "La bille et le verre", "q": "Je pose une bille dans un verre. Je retourne le verre à l'envers sur une table. Je soulève ensuite le verre et je le mets dans le micro-ondes. Où est la bille ? Réponds en une phrase."},
+ {"id": "sechage", "titre": "Les chemises au soleil", "q": "Cinq chemises étendues au soleil mettent quatre heures à sécher. Combien de temps mettront vingt chemises étendues en même temps au soleil ? Termine par une ligne « Réponse : N heures »."},
+ {"id": "pomme", "titre": "Dix phrases, un dernier mot", "q": "Écris exactement dix phrases, une par ligne, numérotées de 1 à 10. Chaque phrase doit se terminer par le mot « pomme », suivi d'un point."},
+ {"id": "calcul", "titre": "Priorité des opérations", "q": "Calcule 25 - 4 * 2 + 3. Termine par une ligne « Réponse : N »."},
+ {"id": "json", "titre": "JSON strict", "q": "Renvoie uniquement un objet JSON valide, sans aucun texte autour ni balise de code, avec exactement trois clés : « nom » (une chaîne), « age » (un entier), « villes » (une liste de trois villes françaises)."},
+ {"id": "pluriels", "titre": "Pluriels irréguliers", "q": "Donne le pluriel de ces cinq noms, dans l'ordre, séparés par des virgules, sans article : cheval, bal, vitrail, pneu, bijou."},
+ {"id": "jours", "titre": "Les jours de la semaine", "q": "Si hier nous étions vendredi, quel jour serons-nous après-demain ? Termine par une ligne « Réponse : jour »."},
+ {"id": "code", "titre": "Fonction Python", "q": "Écris une fonction Python est_premier(n) qui renvoie True si n est un nombre premier et False sinon, y compris pour les entiers négatifs, 0 et 1. Réponds uniquement avec le code, dans un seul bloc."},
+ {"id": "consigne", "titre": "Un seul mot", "q": "Réponds par un seul mot, sans ponctuation : quelle est la capitale de l'Australie ?"}
+]
