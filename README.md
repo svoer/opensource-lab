@@ -24,8 +24,8 @@ Chaque banc se passe sur la machine où tourne ton modèle, derrière une API co
 
 ## Les vidéos
 
-| # | Vidéo | Sujet et machine | Résultat |
-| --- | --- | --- | --- |
-| 1 | [Une journée avec une IA locale](episodes/01-inkling-2-mini/) | Inkling 2 Mini SQ-10 sur RTX 3060 12 Go | 6 épreuves sur 8, 22/24 à la grille, 23 tok/s chacun à 4 |
+| # | Vidéo | Fichiers | Sujet et machine | Résultat |
+| --- | --- | --- | --- | --- |
+| 1 | [Inkling 2 Mini en local : test complet sur RTX 3060](https://youtu.be/LWlXptHarPE) | [episodes/01-inkling-2-mini](episodes/01-inkling-2-mini/) | Inkling 2 Mini SQ-10 sur RTX 3060 12 Go | 6 épreuves sur 8, 22/24 à la grille, 23 tok/s chacun à 4 |
 
 Chaque dossier de vidéo garde les réponses brutes du modèle, pour comparer avec les tiennes.
