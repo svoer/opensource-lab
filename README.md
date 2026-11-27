@@ -1,8 +1,18 @@
-# OPENSOURCE LAB · Le Lab
+# OPENSOURCE LAB
 
-Les fichiers de la chaîne YouTube **OPENSOURCE LAB** : des IA qui tournent chez soi, testées sur du vrai matériel, avec tout ce qu'il faut pour refaire les tests chez toi.
+Les fichiers de la chaîne YouTube **[OPENSOURCE LAB](https://www.youtube.com/@opensource-lab)** : logiciels libres, IA locale et auto-hébergement, installés chez soi, expliqués et testés pour de vrai.
 
-## Les bancs de test (communs à tous les épisodes)
+Tout ce qui sert dans les vidéos est ici, en libre accès : scripts d'installation, réglages, fichiers de test, bancs de mesure et résultats bruts. Le but est que tu puisses refaire chaque test chez toi et comparer.
+
+## Organisation du dépôt
+
+| Dossier | Contenu |
+| --- | --- |
+| [bancs/](bancs/) | Les bancs de test réutilisables d'une vidéo à l'autre |
+| [episodes/](episodes/) | Un dossier par vidéo : fichiers, réglages et résultats bruts |
+
+## Les bancs de test (communs à toutes les vidéos)
+
 
 | Banc | Ce qu'il mesure |
 | --- | --- |
@@ -12,10 +22,10 @@ Les fichiers de la chaîne YouTube **OPENSOURCE LAB** : des IA qui tournent chez
 
 Chaque banc se passe sur la machine où tourne ton modèle, derrière une API compatible OpenAI (Strata, llama.cpp, LM Studio…). Tous les documents de test sont inventés.
 
-## Les épisodes
+## Les vidéos
 
-| # | Épisode | Modèle et machine | Résultat |
+| # | Vidéo | Sujet et machine | Résultat |
 | --- | --- | --- | --- |
 | 1 | [Une journée avec une IA locale](episodes/01-inkling-2-mini/) | Inkling 2 Mini SQ-10 sur RTX 3060 12 Go | 6 épreuves sur 8, 22/24 à la grille, 23 tok/s chacun à 4 |
 
-Chaque dossier d'épisode garde les réponses brutes du modèle, pour comparer avec les tiennes.
+Chaque dossier de vidéo garde les réponses brutes du modèle, pour comparer avec les tiennes.
